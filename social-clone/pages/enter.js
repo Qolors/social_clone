@@ -8,7 +8,7 @@ export default function EnterPage(props) {
     const { user, username } = useContext(UserContext);
 
     return (
-        <div className="mt-56">
+        <div>
             {user ?
                 !username ? <UsernameForm /> : <SignOutButton />
                 :

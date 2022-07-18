@@ -1,6 +1,9 @@
 import PostContent from "../../components/PostContent";
 import { firestore, getUserWithUsername, postToJSON } from "../../lib/firebase";
-import { useDocumentDate } from 'react-firebase-hooks/firestore';
+import { useDocumentData } from 'react-firebase-hooks/firestore';
+import AuthCheck from "../../components/AuthCheck";
+import Link from "next/link";
+import HeartButton from '../../components/HeartButton'
 
 
 
@@ -19,7 +22,7 @@ export async function getStaticProps({ params }) {
     }
 
     return {
-        props: { posts, path },
+        props: { post, path },
         revalidate: 5000,
     };
 }
@@ -43,10 +46,10 @@ export async function getStaticPaths() {
 
 
 export default function Post(props) {
-    
+
     const postRef = firestore.doc(props.path);
 
-    const [realtimePost] = useDocumentDate(postRef);
+    const [realtimePost] = useDocumentData(postRef);
 
     const post = realtimePost || props.post;
     return (
@@ -58,6 +61,17 @@ export default function Post(props) {
                 <p>
                     <strong>{post.heartCount || 0} &#x2764;</strong>
                 </p>
+
+                <AuthCheck
+                    fallback={
+                        <Link href="/enter">
+                            <button>Sign Up</button>
+                        </Link>
+                    }
+                >
+                    <HeartButton postRef={postRef} />
+                </AuthCheck>
+                
             </section>
             
         </main>
