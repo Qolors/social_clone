@@ -36,9 +36,12 @@ export async function getServerSideProps({ query }) {
 
 export default function UserProfilePage({ user, posts }) {
     return (
-        <main className="mt-24">
+        <main className="mt-24 flex flex-col gap-4 items-center">
             <UserProfile user={user} />
-            <PostFeed posts={posts} />
+            <h1 className='border-b border-black text-2xl'>Recent Postings</h1>
+            <div className='flex flex-col gap-y-6 w-full justify-center place-items-center mb-6'>
+                <PostFeed posts={posts} />
+            </div>
         </main>
     )
 }

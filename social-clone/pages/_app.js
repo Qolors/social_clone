@@ -11,9 +11,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <UserContext.Provider value={userData}>
       <NavBar />
-      <div className='mt-24 w-full h-full'>
-        <Component {...pageProps} />
-      </div>
+      <Component {...pageProps} />
       <Toaster />
     </UserContext.Provider>
   );

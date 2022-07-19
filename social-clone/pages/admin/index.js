@@ -13,12 +13,14 @@ import Post from "../[username]/[slug]"
 
 export default function AdminPostsPage(props) {
     return (
-        <main>
+        <div className="w-full flex flex-col justify-center place-items-center">
             <AuthCheck>
-                <PostList />
+                <h1 className='text-2xl'>Share Something New</h1>
                 <CreateNewPost />
+                <PostList />    
             </AuthCheck>
-        </main>
+        </div>
+
     )
 }
 
@@ -30,10 +32,10 @@ function PostList() {
     const posts = querySnapshot?.docs.map((doc) => doc.data());
 
     return (
-        <>
-            <h1>Manage your Posts</h1>
+        <div className="w-full flex flex-col justify-center place-items-center gap-6 mt-10">
+            <h1 className="text-2xl">Manage your Posts</h1>
             <PostFeed posts={posts} admin />
-        </>
+        </div>
     )
 
 }
@@ -73,16 +75,17 @@ function CreateNewPost() {
     }
 
     return (
-        <form onSubmit={createPost}>
+        <form className="bg-slate-50 w-3/4 flex flex-col justify-center place-items-center gap-2 py-6 rounded-lg  shadow-indigo-500 shadow-sm" onSubmit={createPost}>
             <input
+                className='text-center w-3/4'
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="New Article"
+                placeholder="New Thought"
             />
             <p>
-                <strong>Slug:</strong> {slug}
+                <strong>Thread:</strong> {slug}
             </p>
-            <button type="submit" disabled={!isValid}>
+            <button className='w-1/4 px-2 py-2 bg-indigo-500 text-white rounded-sm' type="submit" disabled={!isValid}>
                 Create New Post
             </button>
         </form>

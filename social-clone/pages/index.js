@@ -5,7 +5,7 @@ import Loader from '../components/Loader';
 import { firestore, fromMillis, postToJSON } from '../lib/firebase'
 import { useState } from 'react';
 
-const LIMIT = 1;
+const LIMIT = 5;
 
 export async function getServerSideProps(context) {
   const postsQuery = firestore
@@ -52,13 +52,12 @@ export default function Home(props) {
   };
 
   return (
-    <main className='mt-24'>
+    <div className='grid grid-cols-1 justify-center place-items-center w-full px-6 gap-y-6'>
       <PostFeed posts={posts} />
       {!loading && !postsEnd && <button onClick={getMorePosts}>Load More</button>}
       <Loader show={loading} />
       {postsEnd && 'You have reached the end!'}
-
-    </main>
+    </div>
   )
 }
 

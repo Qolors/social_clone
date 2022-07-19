@@ -8,12 +8,15 @@ export default function EnterPage(props) {
     const { user, username } = useContext(UserContext);
 
     return (
-        <div>
-            {user ?
-                !username ? <UsernameForm /> : <SignOutButton />
-                :
-                <SignInButton />
-            }
+        <div className='mt-24 flex flex-row place-items-center justify-center w-full h-96 text-white'>
+            <div className='flex flex-col shadow-2xl shadow-indigo-400 place-items-center justify-center rounded-md w-1/2 h-full bg-indigo-500'>
+                <h2 className='mb-24 text-xl'>Welcome to ShareThought</h2>
+                {user ?
+                    !username ? <UsernameForm /> : <SignOutButton />
+                    :
+                    <SignInButton />
+                }
+            </div>
         </div>
     )
 }
@@ -24,7 +27,7 @@ function SignInButton() {
     };
 
     return (
-        <button onClick={signInWithGoogle}>Sign in with Google</button>
+        <button className='bg-white px-4 py-1 rounded-full text-black' onClick={signInWithGoogle}>Sign in with Google</button>
 
     );
 
@@ -32,7 +35,7 @@ function SignInButton() {
 
 function SignOutButton() {
     return (
-        <button onClick={() => auth.signOut()}>Sign Out</button>
+        <button className=' px-4 py-2 text-sm rounded-full bg-white text-black' onClick={() => auth.signOut()}>Sign Out</button>
     )
 }
 
