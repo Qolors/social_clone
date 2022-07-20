@@ -29,7 +29,7 @@ function SignInButton() {
 
     return (
         <div>
-            <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-sky-400 opacity-75"></span>
+            <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-sky-400 opacity-75"></span>
             <button className='bg-white px-4 py-1 rounded-full text-black shadow-lg shadow-gray-700' onClick={signInWithGoogle}>Sign in with Google</button>
         </div>
     );

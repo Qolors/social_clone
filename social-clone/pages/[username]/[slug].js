@@ -65,7 +65,7 @@ export default function Post(props) {
                 <AuthCheck
                     fallback={
                         <Link href="/enter">
-                            <button class='rounded-lg px-2 py-1 bg-indigo-500 text-white'>Sign Up</button>
+                            <button className='rounded-lg px-2 py-1 bg-indigo-500 text-white'>Sign Up</button>
                         </Link>
                     }
                 >
