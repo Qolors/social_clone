@@ -14,7 +14,7 @@ export default function PostContent({ post }) {
                 </Link>{' '}
                 on {createdAt.toISOString()}
             </span>
-            <div className="w-3/4 min-h-screen bg-slate-50">
+            <div className="w-3/4 min-w-full min-h-96 bg-slate-50 p-6 border-indigo-600 border-2">
                 <ReactMarkdown>{post?.content}</ReactMarkdown>
             </div>
         </div>

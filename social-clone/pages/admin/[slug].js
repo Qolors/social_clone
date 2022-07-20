@@ -31,22 +31,23 @@ function PostManager() {
     const [post] = useDocumentData(postRef);
 
     return (
-        <main>
+        <main className='w-full min-h-96 grid grid-cols-1 place-items-center'>
             {post && (
-                <>
+                <div className='w-full flex flex-col place-items-center'>
                     <section>
-                        <h1>{post.title}</h1>
-                        <p>ID: {post.slug}</p>
+                        <span className='text-2xl'>{post.title}</span>
                         <PostForm postRef={postRef} defaultValues={post} preview={preview} />
                     </section>
-                    <div>
-                        <h3>Tools</h3>
-                        <button onClick={() => setPreview(!preview)}>{preview ? 'Edit' : 'Preview'}</button>
-                        <Link href={`/${post.username}/${post.slug}`}>
-                            <button className="btn-blue">Live view</button>
-                        </Link>
+                    <div className='w-full flex flex-col place-items-center'>
+                        <h3 className='text-bolder text-2xl mb-2 mt-2'>Tools</h3>
+                        <div className='flex flex-row gap-4'>
+                            <button className='px-4 py-1 rounded-lg bg-indigo-500 text-white shadow-sm' onClick={() => setPreview(!preview)}>{preview ? 'Edit' : 'Preview'}</button>
+                            <Link href={`/${post.username}/${post.slug}`}>
+                                <button className='px-4 py-1 rounded-lg bg-indigo-500 text-white shadow-sm'>Live view</button>
+                            </Link>
+                        </div>
                     </div>
-                </>
+                </div>
             )}
         </main>
 
@@ -73,7 +74,7 @@ function PostForm({ defaultValues, postRef, preview }) {
     }
 
     return (
-        <form onSubmit={handleSubmit(updatePost)}>
+        <form className='w-full bg-slate-50 border rounded-lg border-indigo-500 p-2' onSubmit={handleSubmit(updatePost)}>
             {preview && (
                 <div>
                     <ReactMarkdown>{watch('content')}</ReactMarkdown>
@@ -81,25 +82,27 @@ function PostForm({ defaultValues, postRef, preview }) {
             )}
 
             <div className={preview ? "hidden" : "visible"}>
+                <div className='w-full min-h-96 mx-auto flex flex-col gap-2 place-items-center'>
 
-                <ImageUploader />
+                    <ImageUploader />
 
-                <textarea name="content" {...register("content",{
-                    maxLength: { value: 20000, message: "content is too long"},
-                    minLength: { value: 10, message: 'content is too short'},
-                    required: { value: true, message: 'content is required'},
-                })}></textarea>
+                    <textarea className='w-full h-full' name="content" {...register("content",{
+                        maxLength: { value: 20000, message: "content is too long"},
+                        minLength: { value: 10, message: 'content is too short'},
+                        required: { value: true, message: 'content is required'},
+                    })}></textarea>
 
-                {errors.content && <p>{errors.content.message}</p>}
+                    {errors.content && <p>{errors.content.message}</p>}
 
-                <fieldset>
-                    <input name="published" type="checkbox" {...register('published')} />
-                    <label>Published</label>
-                </fieldset>
+                    <fieldset className='flex flex-row gap-2'>
+                        <input name="published" type="checkbox" {...register('published')} />
+                        <label>Published</label>
+                    </fieldset>
 
-                <button type="submit" disabled={!errors}>
-                    Save Changes
-                </button>
+                    <button className='px-4 py-2 bg-green-500 rounded-lg text-white' type="submit" disabled={!errors}>
+                        Save Changes
+                    </button>
+                </div>
             </div>
         </form>
     );

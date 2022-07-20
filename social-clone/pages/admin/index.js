@@ -13,7 +13,7 @@ import Post from "../[username]/[slug]"
 
 export default function AdminPostsPage(props) {
     return (
-        <div className="w-full flex flex-col justify-center place-items-center">
+        <div className="w-full flex flex-col justify-center place-items-center gap-4">
             <AuthCheck>
                 <h1 className='text-2xl'>Share Something New</h1>
                 <CreateNewPost />
@@ -75,7 +75,7 @@ function CreateNewPost() {
     }
 
     return (
-        <form className="bg-slate-50 w-3/4 flex flex-col justify-center place-items-center gap-2 py-6 rounded-lg  shadow-indigo-500 shadow-sm" onSubmit={createPost}>
+        <form className="bg-slate-50 w-3/4 flex flex-col justify-center place-items-center gap-2 py-6 rounded-lg  shadow-indigo-100 shadow-med" onSubmit={createPost}>
             <input
                 className='text-center w-3/4'
                 value={title}

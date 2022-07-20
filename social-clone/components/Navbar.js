@@ -30,7 +30,7 @@ export default function NavBar() {
                                 </Link>
                             </div>
                             <div className='flex flex-1 w-3/4 h-3/4'>
-                                <button className='w-24 h-6 rounded-md bg-red-300' onClick={() => auth.signOut()}>Sign Out</button>
+                                <button className='w-24 h-6 rounded-md bg-red-500 border-1 border-black text-bold' onClick={() => auth.signOut()}>Sign Out</button>
                             </div>
                         </div>
                     )}

@@ -27,8 +27,8 @@ export default function Heart({ postRef }) {
 
 
     return heartDoc?.exists ? (
-        <button onClick={removeHeart}> Unheart</button>
+        <button className='rounded-lg px-4 py-1 bg-indigo-500 text-white font-bold' onClick={removeHeart}> Unheart</button>
     ) : (
-        <button onClick={addHeart}>Heart</button>
+        <button className='rounded-lg px-4 py-1 bg-indigo-500 text-white font-bold' onClick={addHeart}>Heart</button>
     )
 }

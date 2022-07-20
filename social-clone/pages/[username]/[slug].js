@@ -53,11 +53,11 @@ export default function Post(props) {
 
     const post = realtimePost || props.post;
     return (
-        <main>
-            <section>
+        <main className="w-full grid grid-cols-1 place-items-center gap-y-2">
+            <section className="w-3/4">
                 <PostContent post={post} />
             </section>
-            <section>
+            <section className="w-3/4 flex flex-row gap-2 place-items-center">
                 <p>
                     <strong>{post.heartCount || 0} &#x2764;</strong>
                 </p>
@@ -65,7 +65,7 @@ export default function Post(props) {
                 <AuthCheck
                     fallback={
                         <Link href="/enter">
-                            <button>Sign Up</button>
+                            <button class='rounded-lg px-2 py-1 bg-indigo-500 text-white'>Sign Up</button>
                         </Link>
                     }
                 >

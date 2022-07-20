@@ -2,6 +2,7 @@ import { auth, firestore, googleAuthProvider } from '../lib/firebase'
 import { useCallback, useContext, useState, useEffect } from 'react';
 import debounce from 'lodash.debounce';
 import { UserContext } from '../lib/context';
+import Image from 'next/image';
 
 export default function EnterPage(props) {
 
@@ -9,7 +10,7 @@ export default function EnterPage(props) {
 
     return (
         <div className='mt-24 flex flex-row place-items-center justify-center w-full h-96 text-white'>
-            <div className='flex flex-col shadow-2xl shadow-indigo-400 place-items-center justify-center rounded-md w-1/2 h-full bg-indigo-500'>
+            <div className='flex flex-col shadow-2xl shadow-indigo-400 place-items-center justify-center rounded-md w-1/2 h-full bg-indigo-500 border-2 border-white'>
                 <h2 className='mb-24 text-xl'>Welcome to ShareThought</h2>
                 {user ?
                     !username ? <UsernameForm /> : <SignOutButton />
@@ -27,15 +28,17 @@ function SignInButton() {
     };
 
     return (
-        <button className='bg-white px-4 py-1 rounded-full text-black' onClick={signInWithGoogle}>Sign in with Google</button>
-
+        <div>
+            <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-sky-400 opacity-75"></span>
+            <button className='bg-white px-4 py-1 rounded-full text-black shadow-lg shadow-gray-700' onClick={signInWithGoogle}>Sign in with Google</button>
+        </div>
     );
 
 }
 
 function SignOutButton() {
     return (
-        <button className=' px-4 py-2 text-sm rounded-full bg-white text-black' onClick={() => auth.signOut()}>Sign Out</button>
+        <button className='px-4 py-2 text-sm rounded-full bg-white text-black' onClick={() => auth.signOut()}>Sign Out</button>
     )
 }
 
